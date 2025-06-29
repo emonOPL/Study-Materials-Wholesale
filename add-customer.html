@@ -15,6 +15,10 @@
     />
     <link
       rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
+    />
+    <link
+      rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
     />
     <link rel="stylesheet" href="index.css" />
@@ -55,141 +59,171 @@
           Student > Study Materials Wholesale > Manage Customer
         </div>
 
-        <a href="#" class="btn custom-btn">Add New</a>
+        <br />
 
         <div class="main-table-container">
-          <b class="main-title">Manage Customer</b>
+          <b class="main-title">Add Customer</b>
 
           <div class="main-table">
-            <div class="form-inline">
-              <input
-                type="text"
-                class="form-control search-box"
-                placeholder="Keyword"
-              />
+            <!-- ===== Form Container ===== -->
 
-              <select name="status" id="searchByStatus" class="form-control">
-                <option value="">Status</option>
-                <option value="active">Active</option>
-                <option value="inactive">Inactive</option>
-              </select>
+            <form action="" class="form-horizontal">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" for="name">
+                      Name:<span class="text-danger">*</span>
+                    </label>
+                    <div class="col-sm-10">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="name"
+                        name="name"
+                        required
+                      />
+                    </div>
+                  </div>
 
-              <input
-                type="text"
-                class="form-control"
-                placeholder="0"
-                value="10"
-              />
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" for="tin">
+                      TIN:<span class="text-danger">*</span>
+                    </label>
+                    <div class="col-sm-10">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="tin"
+                        name="tin"
+                        required
+                      />
+                    </div>
+                  </div>
 
-              <button class="btn custom-btn">Search</button>
-            </div>
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" for="email">
+                      Email:
+                    </label>
+                    <div class="col-sm-10">
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        name="email"
+                      />
+                    </div>
+                  </div>
 
-            <!-- ===== Table Container ===== -->
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" for="status">
+                      Status:
+                    </label>
+                    <div class="col-sm-10">
+                      <select name="status" id="status" class="form-control">
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
 
-            <div class="table-container">
-              <table class="table table-bordered custom-table">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" for="mobile">
+                      Mobile:<span class="text-danger">*</span>
+                    </label>
+                    <div class="col-sm-10">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="mobile"
+                        name="mobile"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" for="bin">
+                      BIN:<span class="text-danger">*</span>
+                    </label>
+                    <div class="col-sm-10">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="bin"
+                        name="bin"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" for="address">
+                      Address:
+                    </label>
+                    <div class="col-sm-10">
+                      <textarea
+                        type="text"
+                        class="form-control"
+                        id="mobile"
+                        name="mobile"
+                        rows="3"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <p>Discount</p>
+              <table class="table table-bordered">
                 <thead>
-                  <tr>
-                    <th>Serial</th>
-                    <th>Customer ID</th>
-                    <th>Name</th>
-                    <th>Mobile Number</th>
-                    <th>TIN</th>
-                    <th>BIN</th>
-                    <th>Email</th>
-                    <th>Address</th>
-                    <th>Status</th>
-                    <th>Modified By</th>
-                    <th>Modification Date</th>
-                    <th>Create By</th>
-                    <th>Creation Date</th>
-                    <th class="action-cell">Action</th>
+                  <tr class="text-center">
+                    <td><b>SI</b></td>
+                    <td><b>Effective Date</b></td>
+                    <td><b>Closing Date</b></td>
+                    <td><b>Percentage</b></td>
+                    <td style="cursor: pointer">
+                      <i class="fa-solid fa-square-plus fa-2x"></i>
+                    </td>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>1</td>
-                    <td>CUST001</td>
-                    <td>John Doe</td>
-                    <td>017xxxxxxxx</td>
-                    <td>123456789</td>
-                    <td>987654321</td>
-                    <td>john@example.com</td>
-                    <td>123 Main St, Dhaka</td>
-                    <td>Active</td>
-                    <td>Admin</td>
-                    <td>2025-06-25</td>
-                    <td>Admin</td>
-                    <td>2025-06-20</td>
-                    <td class="action-cell fixed-action">
-                      <span class="edit-icon">
-                        <i class="fa-solid fa-pencil"></i>
-                      </span>
-                      <span class="delete-icon"
-                        ><i class="fa-solid fa-trash-can"></i
-                      ></span>
+                    <td>
+                      <input type="date" class="form-control" />
                     </td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>CUST002</td>
-                    <td>Jane Smith</td>
-                    <td>018xxxxxxxx</td>
-                    <td>234567890</td>
-                    <td>876543210</td>
-                    <td>jane@example.com</td>
-                    <td>456 Market Rd, Chittagong</td>
-                    <td>Inactive</td>
-                    <td>Manager</td>
-                    <td>2025-06-26</td>
-                    <td>Admin</td>
-                    <td>2025-06-21</td>
-                    <td class="action-cell fixed-action">
-                      <span class="edit-icon">
-                        <i class="fa-solid fa-pencil"></i>
-                      </span>
-                      <span class="delete-icon"
-                        ><i class="fa-solid fa-trash-can"></i
-                      ></span>
+                    <td>
+                      <input type="date" class="form-control" />
                     </td>
+                    <td>
+                      <input type="number" step="any" class="form-control" />
+                    </td>
+                    <td><i class="fa-solid fa-square-minus fa-2x"></i></td>
                   </tr>
                 </tbody>
               </table>
-            </div>
 
-            <!-- ----- Table Container End ----- -->
+              <p>Payment Instruction</p>
 
-            <div class="pagination">
-              <p>Showing 1 to 5 of 20 entries</p>
-              <table border="1">
-                <tbody>
-                  <tr>
-                    <td>
-                      <a href="#" class=""
-                        ><i class="fa-solid fa-angles-left"></i
-                      ></a>
-                    </td>
-                    <td>
-                      <a href="#" class="">1</a>
-                    </td>
-                    <td>
-                      <a href="#" class="">2</a>
-                    </td>
-                    <td>
-                      <a href="#" class="">3</a>
-                    </td>
-                    <td>
-                      <a href="#" class="">4</a>
-                    </td>
-                    <td>
-                      <a href="#" class=""
-                        ><i class="fa-solid fa-angles-right"></i
-                      ></a>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+              <textarea
+                name="payment_instruction"
+                id="payment_instruction"
+                class="form-control"
+              >
+                Payment must be made with the Banking channel only.
+              </textarea>
+
+              <button
+                class="btn custom-btn"
+                style="display: block; margin: 1rem auto"
+              >
+                Submit
+              </button>
+            </form>
+
+            <!-- ----- Form Container End ----- -->
           </div>
         </div>
       </div>
@@ -206,6 +240,7 @@
       referrerpolicy="no-referrer"
     ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="index.js"></script>
 
