@@ -13,13 +13,15 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
+    />
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
     />
     <link rel="stylesheet" href="index.css" />
-
     <!-- ----- Links End -----  -->
 
     <title>Study Materials Wholesale</title>
@@ -37,11 +39,13 @@
             </tr>
             <tr>
               <td>
-                <b><a class="nav-link" href="index.html">Manage Customer</a></b>
+                <a class="nav-link" href="index.html">Manage Customer</a>
               </td>
             </tr>
             <tr>
-              <td><a class="nav-link" href="sales.html">Sales</a></td>
+              <td>
+                <b><a class="nav-link" href="sales.html">Sales</a></b>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -53,38 +57,216 @@
 
       <div class="col-sm-10">
         <div class="btn secondary-btn">
-          Student > Study Materials Wholesale > Manage Customer
+          Student > Study Materials Wholesale > Store Book/Materials Sales Entry
         </div>
 
-        <a href="add-customer.html" class="btn custom-btn">Add New</a>
+        <a href="add-book.html" class="btn custom-btn">Add New</a>
 
-        <div class="main-table-container">
-          <b class="main-title">Manage Customer</b>
+        <div class="main-table-container" style="margin-bottom: 1rem">
+          <b class="main-title">Manage Book/Materials Sales</b>
 
           <div class="main-table">
-            <div class="form-inline">
-              <input
-                type="text"
-                class="form-control search-box"
-                placeholder="Keyword"
-              />
+            <!-- ===== Table Container ===== -->
+            <form action="" class="form-horizontal">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="control-label col-sm-5" for="organization">
+                      Organization
+                    </label>
+                    <div class="col-sm-7">
+                      <select
+                        name="organization"
+                        id="organization"
+                        class="form-control"
+                      >
+                        <option value="">Select All</option>
+                        <option value="udvash">UDVASH</option>
+                        <option value="unmesh">UNMESH</option>
+                      </select>
+                    </div>
+                  </div>
 
-              <select name="status" id="searchByStatus" class="form-control">
-                <option value="">Status</option>
-                <option value="active">Active</option>
-                <option value="inactive">Inactive</option>
-              </select>
+                  <div class="form-group">
+                    <label class="control-label col-sm-5" for="session">
+                      Session
+                    </label>
+                    <div class="col-sm-7">
+                      <select name="session" id="session" class="form-control">
+                        <option value="">Select All</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                      </select>
+                    </div>
+                  </div>
 
-              <input
-                type="text"
-                class="form-control"
-                placeholder="0"
-                value="10"
-              />
+                  <div class="form-group" id="customer-group">
+                    <label class="control-label col-sm-5" for="customer">
+                      Customer
+                    </label>
+                    <div class="col-sm-7">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="customer"
+                        name="customer"
+                      />
+                    </div>
+                  </div>
 
-              <button class="btn custom-btn">Search</button>
-            </div>
+                  <div class="form-group" id="date-from-group">
+                    <label class="control-label col-sm-5" for="date-from">
+                      Date From
+                    </label>
+                    <div class="col-sm-7">
+                      <div class="input-group date">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="date-from"
+                          name="date-from"
+                        />
+                        <span class="input-group-addon">
+                          <i class="glyphicon glyphicon-calendar"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
 
+                  <div class="form-group" id="invoice-group">
+                    <label class="control-label col-sm-5" for="invoice">
+                      Invoice No.
+                    </label>
+                    <div class="col-sm-7">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="invoice"
+                        name="invoice"
+                        placeholder="Enter Invoice No."
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form-group" id="display-per-page-group">
+                    <label
+                      class="control-label col-sm-5"
+                      for="display-per-page"
+                    >
+                      Display Per Page
+                    </label>
+                    <div class="col-sm-7">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="display-per-page"
+                        name="display-per-page"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="control-label col-sm-5" for="program">
+                      Program
+                    </label>
+                    <div class="col-sm-7">
+                      <select name="program" id="program" class="form-control">
+                        <option value="">Select All</option>
+                        <option value="engineering">
+                          Engineering Admission Program
+                        </option>
+                        <option value="ka">
+                          Versity 'KA' Admission Program
+                        </option>
+                        <option value="jsc">JSC Model Test</option>
+                        <option value="ssc">SSC Model Test</option>
+                        <option value="hsc">HSC Model Test</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-sm-5" for="material">
+                      Materials Type
+                    </label>
+                    <div class="col-sm-7">
+                      <select
+                        name="material"
+                        id="material"
+                        class="form-control"
+                      >
+                        <option value="">Select All</option>
+                        <option value="engineering">
+                          ইঞ্জিনিয়ারিং কোর্সের গাইড সমূহ
+                        </option>
+                        <option value="unmesh">
+                          উন্মেষ Biology কোর্সের গাইড সমূহ
+                        </option>
+                        <option value="ka">ভার্সিটি 'ক' এর গাইড সমূহ</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-sm-5" for="search">
+                      Search By
+                    </label>
+                    <div class="col-sm-7">
+                      <select name="search" id="search" class="form-control">
+                        <option value="sales">Sales Date</option>
+                        <option value="creation">Creation Date</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group" id="date-to-group">
+                    <label class="control-label col-sm-5" for="date-to">
+                      Date To
+                    </label>
+                    <div class="col-sm-7">
+                      <div class="input-group date">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="date-to"
+                          name="date-to"
+                        />
+                        <span class="input-group-addon">
+                          <i class="glyphicon glyphicon-calendar"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group" id="keyword-group">
+                    <label class="control-label col-sm-5" for="keyword">
+                      Keyword
+                    </label>
+                    <div class="col-sm-7">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="keyword"
+                        name="keyword"
+                        placeholder="User Email"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+            <!-- ----- Table Container End ----- -->
+          </div>
+        </div>
+
+        <div class="main-table-container">
+          <b class="main-title">Details</b>
+
+          <div class="main-table">
             <!-- ===== Table Container ===== -->
 
             <div class="table-container">
@@ -92,67 +274,77 @@
                 <thead>
                   <tr>
                     <th>Serial</th>
-                    <th>Customer ID</th>
-                    <th>Name</th>
+                    <th>Customer</th>
                     <th>Mobile Number</th>
-                    <th>TIN</th>
-                    <th>BIN</th>
-                    <th>Email</th>
-                    <th>Address</th>
-                    <th>Status</th>
+                    <th>Organization</th>
+                    <th>Program</th>
+                    <th>Session</th>
+                    <th>Materials Types</th>
+                    <th>Total Price</th>
+                    <th>Discount</th>
+                    <th>Grand Total</th>
+                    <th>Sales Date</th>
+                    <th>Invoice No.</th>
                     <th>Modified By</th>
                     <th>Modification Date</th>
                     <th>Create By</th>
                     <th>Creation Date</th>
-                    <th class="action-cell">Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>1</td>
-                    <td>001</td>
-                    <td>John Doe</td>
+                    <td>01</td>
+                    <td>[124587] - OnnoRokom Web Services</td>
                     <td>017xxxxxxxx</td>
-                    <td>123456789</td>
-                    <td>987654321</td>
-                    <td>john@example.com</td>
-                    <td>123 Main St, Dhaka</td>
-                    <td>Active</td>
-                    <td>Admin</td>
-                    <td>2025-06-25</td>
-                    <td>Admin</td>
-                    <td>2025-06-20</td>
-                    <td class="action-cell fixed-action">
-                      <span class="edit-icon">
-                        <i class="fa-solid fa-pencil"></i>
-                      </span>
-                      <span class="delete-icon"
-                        ><i class="fa-solid fa-trash-can"></i
-                      ></span>
-                    </td>
+                    <td>UDVASH</td>
+                    <td>Engineering Admission Program</td>
+                    <td>2020</td>
+                    <td>ইঞ্জিনিয়ারিং কোর্সের গাইড সমূহ</td>
+                    <td>4200</td>
+                    <td>200</td>
+                    <td>4000</td>
+                    <td>17 Feb, 2022</td>
+                    <td>INV20250624001</td>
+                    <td>Admin@gmail.com</td>
+                    <td>17 Feb, 2022 04:25</td>
+                    <td>editor@gmail.com</td>
+                    <td>17 Feb, 2022 04:25</td>
                   </tr>
                   <tr>
-                    <td>2</td>
-                    <td>002</td>
-                    <td>Jane Smith</td>
-                    <td>018xxxxxxxx</td>
-                    <td>234567890</td>
-                    <td>876543210</td>
-                    <td>jane@example.com</td>
-                    <td>456 Market Rd, Chittagong</td>
-                    <td>Inactive</td>
-                    <td>Manager</td>
-                    <td>2025-06-26</td>
-                    <td>Admin</td>
-                    <td>2025-06-21</td>
-                    <td class="action-cell fixed-action">
-                      <span class="edit-icon">
-                        <i class="fa-solid fa-pencil"></i>
-                      </span>
-                      <span class="delete-icon"
-                        ><i class="fa-solid fa-trash-can"></i
-                      ></span>
-                    </td>
+                    <td>02</td>
+                    <td>[124587] - OnnoRokom Web Services</td>
+                    <td>017xxxxxxxx</td>
+                    <td>UDVASH</td>
+                    <td>Engineering Admission Program</td>
+                    <td>2020</td>
+                    <td>ইঞ্জিনিয়ারিং কোর্সের গাইড সমূহ</td>
+                    <td>4200</td>
+                    <td>200</td>
+                    <td>4000</td>
+                    <td>17 Feb, 2022</td>
+                    <td>INV20250624001</td>
+                    <td>Admin@gmail.com</td>
+                    <td>17 Feb, 2022 04:25</td>
+                    <td>editor@gmail.com</td>
+                    <td>17 Feb, 2022 04:25</td>
+                  </tr>
+                  <tr>
+                    <td>03</td>
+                    <td>[124587] - OnnoRokom Web Services</td>
+                    <td>017xxxxxxxx</td>
+                    <td>UDVASH</td>
+                    <td>Engineering Admission Program</td>
+                    <td>2020</td>
+                    <td>ইঞ্জিনিয়ারিং কোর্সের গাইড সমূহ</td>
+                    <td>4200</td>
+                    <td>200</td>
+                    <td>4000</td>
+                    <td>17 Feb, 2022</td>
+                    <td>INV20250624001</td>
+                    <td>Admin@gmail.com</td>
+                    <td>17 Feb, 2022 04:25</td>
+                    <td>editor@gmail.com</td>
+                    <td>17 Feb, 2022 04:25</td>
                   </tr>
                 </tbody>
               </table>
@@ -206,11 +398,10 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="index.js"></script>
-
     <!-- ----- Scripts End -----  -->
   </body>
 </html>

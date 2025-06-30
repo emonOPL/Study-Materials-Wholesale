@@ -1,5 +1,14 @@
 $(document).ready(function () {
   // ===== Function to Initialize Datepickers =====
+  $("#date-from, #date-to").datepicker({
+    todayBtn: "linked",
+    clearBtn: true,
+    autoclose: true,
+    todayHighlight: true,
+    toggleActive: true,
+    format: "yyyy-mm-dd",
+  });
+
   function initializeDatepickers(row) {
     row.find(".effective-date, .closing-date").datepicker({
       todayBtn: "linked",
@@ -7,7 +16,7 @@ $(document).ready(function () {
       autoclose: true,
       todayHighlight: true,
       toggleActive: true,
-      format: "dd-mm-yyyy",
+      format: "yyyy-mm-dd",
     });
 
     row.find(".closing-date").prop("disabled", true);
