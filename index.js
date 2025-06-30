@@ -251,17 +251,23 @@ $(document).ready(function () {
     selectedMaterial.on("change", function () {
       var value = $(this).val();
       var index = materialArray.indexOf(value);
+      var previousValue = $(this).data("prev");
 
       if (index !== -1) {
         materialArray.splice(index, 1);
         $(this).closest("td").removeClass("has-error");
         $(this).closest("td").find(".help-block").addClass("hide");
+        if (previousValue) {
+          materialArray.push(previousValue);
+        }
       } else {
         $(this).closest("td").addClass("has-error");
         $(this).closest("td").find(".help-block").removeClass("hide");
       }
-      console.log($(this).val());
+      console.log(previousValue);
       console.log($(this).find("option:selected").text());
+
+      $(this).data("prev", value);
     });
 
     // Re-bind remove handler
