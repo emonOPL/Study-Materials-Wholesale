@@ -1,6 +1,6 @@
 $(document).ready(function () {
   // ===== Function to Initialize Datepickers =====
-  $("#date-from, #date-to").datepicker({
+  $("#date-from, #date-to, #sales-date").datepicker({
     todayBtn: "linked",
     clearBtn: true,
     autoclose: true,
@@ -200,4 +200,80 @@ $(document).ready(function () {
 
     alert("Form submitted successfully!");
   });
+
+  //   ===== Add Book Page =====
+
+  function calculateTotal() {
+    var totalAmount = 0;
+
+    $("#addBookTable tbody tr").each(function () {
+      const calculateAmount = parseFloat($(this).find(".amount").val()) || 0;
+      totalAmount += calculateAmount;
+    });
+
+    $("#total-amount").val(totalAmount.toFixed(2));
+    $("#discount").val((totalAmount * 0.1).toFixed(2));
+    $("#grand-total").val((totalAmount * 0.9).toFixed(2));
+  }
+
+  function calculateAmount(row) {
+    const rate = parseInt(row.find(".rate").val());
+    const quantity = parseInt(row.find(".quantity").val());
+    const amount = rate * quantity;
+    row.find(".amount").val(amount);
+
+    calculateTotal();
+  }
+
+  const materialArray = ["book-01", "book-06", "book-07", "book-08", "book-09"];
+
+  // ===== Add Discount Row =====
+  $("#addMaterials").click(function () {
+    var lastRow = $("#addBookTable tbody tr:last");
+    var newRow = lastRow.clone().removeClass("hide");
+    var newId = parseInt(lastRow.data("id")) + 1;
+    var selectedMaterial = newRow.find("select[name='material']");
+
+    newRow.attr("data-id", newId);
+
+    $("#addBookTable tbody").append(newRow);
+
+    calculateAmount(newRow);
+
+    newRow.find(".rate").on("keyup", function () {
+      calculateAmount(newRow);
+    });
+
+    newRow.find(".quantity").on("keyup", function () {
+      calculateAmount(newRow);
+    });
+
+    selectedMaterial.on("change", function () {
+      var value = $(this).val();
+      var index = materialArray.indexOf(value);
+
+      if (index !== -1) {
+        materialArray.splice(index, 1);
+        $(this).closest("td").removeClass("has-error");
+        $(this).closest("td").find(".help-block").addClass("hide");
+      } else {
+        $(this).closest("td").addClass("has-error");
+        $(this).closest("td").find(".help-block").removeClass("hide");
+      }
+      console.log($(this).val());
+      console.log($(this).find("option:selected").text());
+    });
+
+    // Re-bind remove handler
+    newRow.find(".remove-material-row").click(function () {
+      $(this).closest("tr").remove();
+    });
+  });
+
+  // ===== Remove Discount Row (initial rows only) =====
+  $(".remove-material-row").click(function () {
+    $(this).closest("tr").remove();
+  });
+
+  // ----- End Add Book Page -----
 });

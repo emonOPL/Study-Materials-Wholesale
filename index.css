@@ -206,3 +206,9 @@ th {
   text-decoration: none;
 }
 /* ------ Main Content End ------  */
+
+.table.no-border,
+.table.no-border th,
+.table.no-border td {
+  border: none;
+}

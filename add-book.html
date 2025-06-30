@@ -1,1 +1,420 @@
-<h1>Hello</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ===== Links =====  -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="index.css" />
+
+    <!-- ----- Links End -----  -->
+
+    <title>Study Materials Wholesale</title>
+  </head>
+
+  <body>
+    <div class="container-fluid row">
+      <!-- ===== Nav Table ===== -->
+
+      <div class="col-sm-2">
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <td class="nav-title">Study Materials Wholesale</td>
+            </tr>
+            <tr>
+              <td>
+                <a class="nav-link" href="index.html">Manage Customer</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <b><a class="nav-link" href="sales.html">Sales</a></b>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ----- Nav Table End -----  -->
+
+      <!-- ===== Main Content ===== -->
+
+      <div class="col-sm-10">
+        <div class="btn secondary-btn">
+          Student > Study Materials Wholesale > Store Book/Materials Sales Entry
+        </div>
+
+        <br />
+
+        <div class="main-table-container">
+          <b class="main-title">Add Book/Materials Sales</b>
+
+          <div class="main-table">
+            <!-- ===== Form Container ===== -->
+
+            <form id="addBookForm" action="" class="form-horizontal">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group" id="customer-group">
+                    <label class="control-label col-sm-4" for="customer">
+                      Customer<span class="text-danger">*</span>
+                    </label>
+                    <div class="col-sm-8">
+                      <select
+                        name="customer"
+                        id="customer"
+                        class="form-control"
+                      >
+                        <option value="">Search</option>
+                        <option value="12458">
+                          [12458] - OnnoRokom Web Services
+                        </option>
+                        <option value="12452">
+                          [12452] - Banglabazar Book Store
+                        </option>
+                      </select>
+                      <span class="help-block hide">
+                        Please choose one Customer.
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group" id="organization-group">
+                    <label class="control-label col-sm-4" for="organization">
+                      Organization<span class="text-danger">*</span>
+                    </label>
+                    <div class="col-sm-8">
+                      <select
+                        name="organization"
+                        id="organization"
+                        class="form-control"
+                      >
+                        <option value="">Select Organization</option>
+                        <option value="udvash">UDVASH</option>
+                        <option value="unmesh">UNMESH</option>
+                      </select>
+                      <span class="help-block hide">
+                        Please choose one Organization.
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group" id="session-group">
+                    <label class="control-label col-sm-4" for="session">
+                      Session<span class="text-danger">*</span>
+                    </label>
+                    <div class="col-sm-8">
+                      <select name="session" id="session" class="form-control">
+                        <option value="">Select Session</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                      </select>
+                      <span class="help-block hide">
+                        Please choose one Session.
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <br />
+                  </div>
+
+                  <div class="form-group" id="program-group">
+                    <label class="control-label col-sm-4" for="program">
+                      Program<span class="text-danger">*</span>
+                    </label>
+                    <div class="col-sm-8">
+                      <select name="program" id="program" class="form-control">
+                        <option value="">Select Program</option>
+                        <option value="engineering">
+                          Engineering Admission Program
+                        </option>
+                        <option value="ka">
+                          Varsity 'KA' Admission Program
+                        </option>
+                        <option value="jsc">JSC Model Test</option>
+                        <option value="ssc">SSC Model Test</option>
+                        <option value="hsc">HSC Model Test</option>
+                      </select>
+                      <span class="help-block hide">
+                        Please choose one Program.
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group" id="materials-group">
+                    <label class="control-label col-sm-4" for="materials">
+                      Materials Type<span class="text-danger">*</span>
+                    </label>
+                    <div class="col-sm-8">
+                      <select
+                        name="materials"
+                        id="materials"
+                        class="form-control"
+                      >
+                        <option value="">Select Materials Type</option>
+                        <option value="engineeringGuide">
+                          ইঞ্জিনিয়ারিং কোর্সের গাইড সমূহ
+                        </option>
+                        <option value="unmeshGuide">
+                          উন্মেষ Biology কোর্সের গাইড সমূহ
+                        </option>
+                        <option value="kaGuide">
+                          ভার্সিটি 'ক' এর গাইড সমূহ
+                        </option>
+                      </select>
+                      <span class="help-block hide">
+                        Please choose one Type.
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                style="
+                  border: 1px solid rgb(222, 222, 222);
+                  border-radius: 1rem;
+                "
+              >
+                <table
+                  id="addBookTable"
+                  class="table table-borderless text-center no-border"
+                >
+                  <thead>
+                    <tr>
+                      <th><b>Material</b></th>
+                      <th><b>Rate</b></th>
+                      <th><b>Quantity</b></th>
+                      <th><b>Amount</b></th>
+                      <th
+                        style="cursor: pointer; color: #349c42"
+                        id="addMaterials"
+                      >
+                        <i class="fa-regular fa-square-plus"></i>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-id="0" class="hide">
+                      <td class="form-group">
+                        <div class="col-sm-8">
+                          <select name="material" class="form-control material">
+                            <option value="">Select Materials</option>
+                            <option value="book-01">
+                              Physics Practice Book-01
+                            </option>
+                            <option value="book-06">
+                              HMath Preparation Book-06
+                            </option>
+                            <option value="book-07">
+                              Chemistry Practice Book-07
+                            </option>
+                            <option value="book-08">
+                              Chemistry Practice Book-08
+                            </option>
+                            <option value="book-09">
+                              Chemistry Practice Book-09
+                            </option>
+                          </select>
+                          <span class="help-block hide">
+                            This material is already selected.
+                          </span>
+                        </div>
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          step="any"
+                          class="form-control rate"
+                          value="0"
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          step="any"
+                          class="form-control quantity"
+                          value="0"
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          step="any"
+                          class="form-control amount"
+                          readonly
+                        />
+                      </td>
+                      <td
+                        style="cursor: pointer; color: #e70001"
+                        class="remove-material-row"
+                      >
+                        <i class="fa-regular fa-square-minus"></i>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="row" style="margin-top: 1rem">
+                <div class="col-sm-6">
+                  <div class="form-group" id="sales-date-group">
+                    <label class="control-label col-sm-4" for="sales-date">
+                      Sales Date
+                    </label>
+                    <div class="col-sm-8">
+                      <div class="input-group date">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="sales-date"
+                          name="sales-date"
+                        />
+                        <span class="input-group-addon">
+                          <i class="glyphicon glyphicon-calendar"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group" id="challan-no-group">
+                    <label class="control-label col-sm-4" for="challan-no">
+                      Challan No.<span class="text-danger">*</span>
+                    </label>
+                    <div class="col-sm-8">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="challan-no"
+                        name="challan-no"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <div class="form-group" id="total-amount-group">
+                    <label class="control-label col-sm-4" for="total-amount">
+                      Total Amount
+                    </label>
+                    <div class="col-sm-8">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="total-amount"
+                        name="total-amount"
+                        readonly
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group" id="discount-group">
+                    <label class="control-label col-sm-4" for="discount">
+                      Discount (10%)
+                    </label>
+                    <div class="col-sm-8">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="discount"
+                        name="discount"
+                        readonly
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group" id="grand-total-group">
+                    <label class="control-label col-sm-4" for="grand-total">
+                      Grand Total
+                    </label>
+                    <div class="col-sm-8">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="grand-total"
+                        name="grand-total"
+                        readonly
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <p>Payment Instruction</p>
+
+              <textarea
+                name="payment_instruction"
+                id="payment_instruction"
+                class="form-control"
+                readonly
+              >
+Payment must be made with the Banking channel only.
+              </textarea>
+              <br />
+              <p>Remark</p>
+
+              <textarea
+                name="payment_instruction"
+                id="payment_instruction"
+                class="form-control"
+              >
+Discount applied as per agreed terms.
+              </textarea>
+
+              <button
+                class="btn custom-btn"
+                style="display: block; margin: 1rem auto"
+              >
+                Submit
+              </button>
+            </form>
+
+            <!-- ----- Form Container End ----- -->
+          </div>
+        </div>
+
+        <!-- ===== Back Butto =====  -->
+
+        <a href="index.html">&lt; Back</a>
+
+        <!-- ----- Back Button End -----   -->
+      </div>
+
+      <!-- ----- Main Content End -----  -->
+    </div>
+
+    <!-- ===== Scripts ===== -->
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"
+      integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="index.js"></script>
+
+    <!-- ----- Scripts End -----  -->
+  </body>
+</html>
