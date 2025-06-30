@@ -176,31 +176,54 @@
               </div>
 
               <p>Discount</p>
-              <table class="table table-bordered text-center">
+              <table
+                id="discountTable"
+                class="table table-bordered text-center"
+              >
                 <thead>
                   <tr>
                     <td><b>SI</b></td>
                     <td><b>Effective Date</b></td>
                     <td><b>Closing Date</b></td>
                     <td><b>Percentage</b></td>
-                    <td style="cursor: pointer">
-                      <i class="fa-solid fa-square-plus fa-2x"></i>
+                    <td style="cursor: pointer" id="addDiscount">
+                      <i class="fa-solid fa-square-plus fa-2x opacity-50"></i>
                     </td>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
+                  <tr data-id="0" class="hide">
+                    <td>0</td>
                     <td>
-                      <input type="date" class="form-control" />
+                      <div class="input-group date">
+                        <input
+                          type="text"
+                          class="form-control effective-date"
+                          name="effective_date"
+                        />
+                        <span class="input-group-addon">
+                          <i class="glyphicon glyphicon-calendar"></i>
+                        </span>
+                      </div>
                     </td>
                     <td>
-                      <input type="date" class="form-control" />
+                      <div class="input-group date">
+                        <input
+                          type="text"
+                          class="form-control closing-date"
+                          name="closing_date"
+                        />
+                        <span class="input-group-addon">
+                          <i class="glyphicon glyphicon-calendar"></i>
+                        </span>
+                      </div>
                     </td>
                     <td>
                       <input type="number" step="any" class="form-control" />
                     </td>
-                    <td><i class="fa-solid fa-square-minus fa-2x"></i></td>
+                    <td class="remove-discount-row" style="cursor: pointer">
+                      <i class="fa-solid fa-square-minus fa-2x opacity-50"></i>
+                    </td>
                   </tr>
                 </tbody>
               </table>
