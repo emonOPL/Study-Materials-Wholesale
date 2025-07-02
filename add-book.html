@@ -75,6 +75,7 @@
 
             <form id="addBookForm" action="" class="form-horizontal">
               <div class="row">
+                <div class="col-sm-3"></div>
                 <div class="col-sm-6">
                   <div class="form-group" id="customer-group">
                     <label class="control-label col-sm-4" for="customer">
@@ -119,80 +120,8 @@
                       </span>
                     </div>
                   </div>
-
-                  <div class="form-group" id="session-group">
-                    <label class="control-label col-sm-4" for="session">
-                      Session<span class="text-danger">*</span>
-                    </label>
-                    <div class="col-sm-8">
-                      <select name="session" id="session" class="form-control">
-                        <option value="">Select Session</option>
-                        <option value="2022">2022</option>
-                        <option value="2021">2021</option>
-                        <option value="2020">2020</option>
-                      </select>
-                      <span class="help-block hide">
-                        Please choose one Session.
-                      </span>
-                    </div>
-                  </div>
                 </div>
-
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <br />
-                  </div>
-
-                  <div class="form-group" id="program-group">
-                    <label class="control-label col-sm-4" for="program">
-                      Program<span class="text-danger">*</span>
-                    </label>
-                    <div class="col-sm-8">
-                      <select name="program" id="program" class="form-control">
-                        <option value="">Select Program</option>
-                        <option value="engineering">
-                          Engineering Admission Program
-                        </option>
-                        <option value="ka">
-                          Varsity 'KA' Admission Program
-                        </option>
-                        <option value="jsc">JSC Model Test</option>
-                        <option value="ssc">SSC Model Test</option>
-                        <option value="hsc">HSC Model Test</option>
-                      </select>
-                      <span class="help-block hide">
-                        Please choose one Program.
-                      </span>
-                    </div>
-                  </div>
-
-                  <div class="form-group" id="materials-group">
-                    <label class="control-label col-sm-4" for="materials">
-                      Materials Type<span class="text-danger">*</span>
-                    </label>
-                    <div class="col-sm-8">
-                      <select
-                        name="materials"
-                        id="materials"
-                        class="form-control"
-                      >
-                        <option value="">Select Materials Type</option>
-                        <option value="engineeringGuide">
-                          ইঞ্জিনিয়ারিং কোর্সের গাইড সমূহ
-                        </option>
-                        <option value="unmeshGuide">
-                          উন্মেষ Biology কোর্সের গাইড সমূহ
-                        </option>
-                        <option value="kaGuide">
-                          ভার্সিটি 'ক' এর গাইড সমূহ
-                        </option>
-                      </select>
-                      <span class="help-block hide">
-                        Please choose one Type.
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                <div class="col-sm-3"></div>
               </div>
 
               <div
@@ -207,10 +136,16 @@
                 >
                   <thead>
                     <tr>
-                      <th><b>Material</b></th>
+                      <th><b>Program</b></th>
+                      <th><b>Session</b></th>
+                      <th><b>Materials Type</b></th>
+                      <th><b>Materials</b></th>
                       <th><b>Rate</b></th>
                       <th><b>Quantity</b></th>
                       <th><b>Amount</b></th>
+                      <th><b>Regular (%)</b></th>
+                      <th><b>Special (BDT)</b></th>
+                      <th><b>Net Amount</b></th>
                       <th
                         style="cursor: pointer; color: #349c42"
                         id="addMaterials"
@@ -220,31 +155,66 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr data-id="0" class="hide">
+                    <tr data-id="0" class="">
                       <td class="form-group">
-                        <div class="col-sm-8">
-                          <select name="material" class="form-control material">
-                            <option value="">Select Materials</option>
-                            <option value="book-01" data-price="150">
-                              Physics Practice Book-01
-                            </option>
-                            <option value="book-06" data-price="200">
-                              HMath Preparation Book-06
-                            </option>
-                            <option value="book-07" data-price="250">
-                              Chemistry Practice Book-07
-                            </option>
-                            <option value="book-08" data-price="350">
-                              Chemistry Practice Book-08
-                            </option>
-                            <option value="book-09" data-price="300">
-                              Chemistry Practice Book-09
-                            </option>
-                          </select>
-                          <span class="help-block hide">
-                            This material is already selected.
-                          </span>
-                        </div>
+                        <select name="program" class="form-control">
+                          <option value="">Select Program</option>
+                          <option value="engineering">
+                            Engineering Admission Program
+                          </option>
+                          <option value="ka">
+                            Varsity 'KA' Admission Program
+                          </option>
+                          <option value="jsc">JSC Model Test</option>
+                          <option value="ssc">SSC Model Test</option>
+                          <option value="hsc">HSC Model Test</option>
+                        </select>
+                      </td>
+                      <td class="form-group">
+                        <select name="session" class="form-control">
+                          <option value="">Select Session</option>
+                          <option value="2022">2022</option>
+                          <option value="2021">2021</option>
+                          <option value="2020">2020</option>
+                        </select>
+                      </td>
+
+                      <td class="form-group">
+                        <select name="materials" class="form-control">
+                          <option value="">Select Materials Type</option>
+                          <option value="engineeringGuide">
+                            ইঞ্জিনিয়ারিং কোর্সের গাইড সমূহ
+                          </option>
+                          <option value="unmeshGuide">
+                            উন্মেষ Biology কোর্সের গাইড সমূহ
+                          </option>
+                          <option value="kaGuide">
+                            ভার্সিটি 'ক' এর গাইড সমূহ
+                          </option>
+                        </select>
+                      </td>
+                      <td class="form-group">
+                        <select name="material" class="form-control material">
+                          <option value="">Select Materials</option>
+                          <option value="book-01" data-price="150">
+                            Physics Practice Book-01
+                          </option>
+                          <option value="book-06" data-price="200">
+                            HMath Preparation Book-06
+                          </option>
+                          <option value="book-07" data-price="250">
+                            Chemistry Practice Book-07
+                          </option>
+                          <option value="book-08" data-price="350">
+                            Chemistry Practice Book-08
+                          </option>
+                          <option value="book-09" data-price="300">
+                            Chemistry Practice Book-09
+                          </option>
+                        </select>
+                        <span class="help-block hide">
+                          This field is already choosen.
+                        </span>
                       </td>
                       <td>
                         <input
@@ -272,6 +242,38 @@
                           readonly
                         />
                       </td>
+                      <td>
+                        <input
+                          type="number"
+                          name="regular"
+                          class="form-control regular"
+                          value="0"
+                          min="0"
+                          step="any"
+                          readonly
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          name="special"
+                          class="form-control special"
+                          value="0"
+                          min="0"
+                          step="any"
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          name="net-amount"
+                          class="form-control net-amount"
+                          value="0"
+                          min="0"
+                          step="any"
+                          readonly
+                        />
+                      </td>
                       <td
                         style="cursor: pointer; color: #e70001"
                         class="remove-material-row"
@@ -284,7 +286,7 @@
               </div>
 
               <div class="row" style="margin-top: 1rem">
-                <div class="col-sm-6">
+                <div class="col-sm-5">
                   <div class="form-group" id="sales-date-group">
                     <label class="control-label col-sm-4" for="sales-date">
                       Sales Date
@@ -322,7 +324,7 @@
                   </div>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-7">
                   <div class="form-group" id="total-amount-group">
                     <label class="control-label col-sm-4" for="total-amount">
                       Total Amount
@@ -337,16 +339,36 @@
                       />
                     </div>
                   </div>
-                  <div class="form-group" id="discount-group">
-                    <label class="control-label col-sm-4" for="discount">
-                      Discount <span id="showDiscountRate"></span>
+                  <div class="form-group" id="regular-discount-group">
+                    <label
+                      class="control-label col-sm-4"
+                      for="regular-discount"
+                    >
+                      Regular Discount
                     </label>
                     <div class="col-sm-8">
                       <input
                         type="text"
                         class="form-control"
-                        id="discount"
-                        name="discount"
+                        id="regular-discount"
+                        name="regular-discount"
+                        readonly
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group" id="special-discount-group">
+                    <label
+                      class="control-label col-sm-4"
+                      for="special-discount"
+                    >
+                      Regular Discount
+                    </label>
+                    <div class="col-sm-8">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="special-discount"
+                        name="special-discount"
                         readonly
                       />
                     </div>

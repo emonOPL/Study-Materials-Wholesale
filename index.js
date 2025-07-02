@@ -302,7 +302,7 @@ $(document).ready(function () {
     calculateTotal();
   }
 
-  const materialArray = ["book-01", "book-06", "book-07", "book-08", "book-09"];
+  const materialArray = [];
 
   // ===== Add Discount Row =====
   $("#addMaterials").click(function () {
@@ -310,17 +310,21 @@ $(document).ready(function () {
     var newRow = lastRow.clone().removeClass("hide");
     var newId = parseInt(lastRow.data("id")) + 1;
     var selectedMaterial = newRow.find("select[name='material']");
+    var selectedProgram = newRow.find("select[name='program']");
+    var selectedSession = newRow.find("select[name='session']");
+    var selectedMaterials = newRow.find("select[name='materials']");
 
     newRow.attr("data-id", newId);
     newRow.find(".rate").val(0);
     newRow.find(".quantity").val(0);
+    newRow.find(".special").val(0);
     newRow.find(".quantity").removeClass("warning-border");
 
     $("#addBookTable tbody").append(newRow);
 
     calculateAmount(newRow);
 
-    newRow.find(".rate").on("keyup", function () {
+    newRow.find(".special").on("keyup", function () {
       calculateAmount(newRow);
     });
 
@@ -330,34 +334,50 @@ $(document).ready(function () {
 
     selectedMaterial.on("change", function () {
       var value = $(this).val();
-      var index = materialArray.indexOf(value);
-      var previousValue = $(this).data("prev");
 
       const selectedOption = $(this).find("option:selected");
       const price = selectedOption.data("price") || 0;
       const quantity = $(this).closest("tr").find(".quantity").val();
-
       $(this).closest("tr").find(".rate").val(price);
 
       if (value !== "" && quantity <= 0) {
         $(this).closest("tr").find(".quantity").addClass("warning-border");
       }
 
-      if (index !== -1 || !value) {
-        materialArray.splice(index, 1);
-        $(this).closest("td").removeClass("has-error");
-        $(this).closest("td").find(".help-block").addClass("hide");
-        if (previousValue) {
-          materialArray.push(previousValue);
+      if (
+        value &&
+        selectedMaterials.val() &&
+        selectedProgram.val() &&
+        selectedSession.val()
+      ) {
+        var flag = false;
+
+        materialArray.forEach((arrayObject) => {
+          if (
+            value === arrayObject.material &&
+            selectedMaterials.val() === arrayObject.materials &&
+            selectedProgram.val() === arrayObject.program &&
+            selectedSession.val() === arrayObject.session
+          ) {
+            flag = true;
+            $(this).closest("td").addClass("has-error");
+            $(this).closest("td").find(".help-block").removeClass("hide");
+          }
+        });
+        if (!flag) {
+          materialArray.push({
+            material: selectedMaterial.val(),
+            materials: selectedMaterials.val(),
+            program: selectedProgram.val(),
+            session: selectedSession.val(),
+          });
+          $(this).closest("td").removeClass("has-error");
+          $(this).closest("td").find(".help-block").addClass("hide");
         }
       } else {
-        $(this).closest("td").addClass("has-error");
-        $(this).closest("td").find(".help-block").removeClass("hide");
+        $(this).closest("td").removeClass("has-error");
+        $(this).closest("td").find(".help-block").addClass("hide");
       }
-
-      console.log(selectedOption.text());
-
-      $(this).data("prev", value);
     });
 
     newRow.find(".quantity").on("change", function () {
