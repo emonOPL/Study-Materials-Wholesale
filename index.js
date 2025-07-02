@@ -1,3 +1,5 @@
+let currentDiscountRate = 0;
+
 $(document).ready(function () {
   // ===== Function to Initialize Datepickers =====
   $("#date-from, #date-to, #sales-date").datepicker({
@@ -203,6 +205,21 @@ $(document).ready(function () {
 
   //   ===== Add Book Page =====
 
+  $("#customer").select2({
+    placeholder: "Search Customer",
+    allowClear: true,
+  });
+
+  $("#customer").on("change", function () {
+    const selectedOption = $(this).find("option:selected");
+    const discount = selectedOption.data("discount") || 0;
+    currentDiscountRate = discount;
+    $("#showDiscountRate").text(
+      `${currentDiscountRate === 0 ? "" : `(${currentDiscountRate}%)`}`
+    );
+    calculateTotal();
+  });
+
   function calculateTotal() {
     var totalAmount = 0;
 
@@ -212,8 +229,10 @@ $(document).ready(function () {
     });
 
     $("#total-amount").val(totalAmount.toFixed(2));
-    $("#discount").val((totalAmount * 0.1).toFixed(2));
-    $("#grand-total").val((totalAmount * 0.9).toFixed(2));
+    $("#discount").val((totalAmount * (currentDiscountRate / 100)).toFixed(2));
+    $("#grand-total").val(
+      (totalAmount * (1 - currentDiscountRate / 100)).toFixed(2)
+    );
   }
 
   function calculateAmount(row) {
@@ -235,6 +254,9 @@ $(document).ready(function () {
     var selectedMaterial = newRow.find("select[name='material']");
 
     newRow.attr("data-id", newId);
+    newRow.find(".rate").val(0);
+    newRow.find(".quantity").val(0);
+    newRow.find(".quantity").removeClass("warning-border");
 
     $("#addBookTable tbody").append(newRow);
 
@@ -253,7 +275,17 @@ $(document).ready(function () {
       var index = materialArray.indexOf(value);
       var previousValue = $(this).data("prev");
 
-      if (index !== -1) {
+      const selectedOption = $(this).find("option:selected");
+      const price = selectedOption.data("price") || 0;
+      const quantity = $(this).closest("tr").find(".quantity").val();
+
+      $(this).closest("tr").find(".rate").val(price);
+
+      if (value !== "" && quantity <= 0) {
+        $(this).closest("tr").find(".quantity").addClass("warning-border");
+      }
+
+      if (index !== -1 || !value) {
         materialArray.splice(index, 1);
         $(this).closest("td").removeClass("has-error");
         $(this).closest("td").find(".help-block").addClass("hide");
@@ -264,10 +296,18 @@ $(document).ready(function () {
         $(this).closest("td").addClass("has-error");
         $(this).closest("td").find(".help-block").removeClass("hide");
       }
-      console.log(previousValue);
-      console.log($(this).find("option:selected").text());
+
+      console.log(selectedOption.text());
 
       $(this).data("prev", value);
+    });
+
+    newRow.find(".quantity").on("change", function () {
+      if ($(this).val() > 0 || $(this).val() === NaN) {
+        $(this).removeClass("warning-border");
+      } else {
+        $(this).addClass("warning-border");
+      }
     });
 
     // Re-bind remove handler
@@ -279,6 +319,11 @@ $(document).ready(function () {
   // ===== Remove Discount Row (initial rows only) =====
   $(".remove-material-row").click(function () {
     $(this).closest("tr").remove();
+  });
+
+  $("#addBookForm").submit(function (event) {
+    event.preventDefault();
+    alert("Clicked!");
   });
 
   // ----- End Add Book Page -----

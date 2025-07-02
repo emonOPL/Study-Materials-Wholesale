@@ -21,6 +21,10 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="index.css" />
 
     <!-- ----- Links End -----  -->
@@ -83,10 +87,10 @@
                         class="form-control"
                       >
                         <option value="">Search</option>
-                        <option value="12458">
+                        <option value="12458" data-discount="10">
                           [12458] - OnnoRokom Web Services
                         </option>
-                        <option value="12452">
+                        <option value="12452" data-discount="5">
                           [12452] - Banglabazar Book Store
                         </option>
                       </select>
@@ -221,19 +225,19 @@
                         <div class="col-sm-8">
                           <select name="material" class="form-control material">
                             <option value="">Select Materials</option>
-                            <option value="book-01">
+                            <option value="book-01" data-price="150">
                               Physics Practice Book-01
                             </option>
-                            <option value="book-06">
+                            <option value="book-06" data-price="200">
                               HMath Preparation Book-06
                             </option>
-                            <option value="book-07">
+                            <option value="book-07" data-price="250">
                               Chemistry Practice Book-07
                             </option>
-                            <option value="book-08">
+                            <option value="book-08" data-price="350">
                               Chemistry Practice Book-08
                             </option>
-                            <option value="book-09">
+                            <option value="book-09" data-price="300">
                               Chemistry Practice Book-09
                             </option>
                           </select>
@@ -248,6 +252,7 @@
                           step="any"
                           class="form-control rate"
                           value="0"
+                          readonly
                         />
                       </td>
                       <td>
@@ -330,7 +335,7 @@
                   </div>
                   <div class="form-group" id="discount-group">
                     <label class="control-label col-sm-4" for="discount">
-                      Discount (10%)
+                      Discount <span id="showDiscountRate"></span>
                     </label>
                     <div class="col-sm-8">
                       <input
@@ -413,6 +418,7 @@ Discount applied as per agreed terms.
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="index.js"></script>
 
     <!-- ----- Scripts End -----  -->
