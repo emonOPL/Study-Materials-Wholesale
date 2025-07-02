@@ -96,6 +96,62 @@ $(document).ready(function () {
 
   //   ===== Form Validation and Submission =====
 
+  $("input[name='name']").on("keyup", function () {
+    if ($(this).val().trim() !== "") {
+      $("#name-group").removeClass("has-error");
+      $("#name-group .help-block").addClass("hide");
+    } else {
+      $("#name-group").addClass("has-error");
+      $("#name-group .help-block").removeClass("hide");
+    }
+  });
+
+  $("input[name='tin']").on("keyup", function () {
+    if (
+      $(this).val().trim().length === 10 ||
+      $(this).val().trim().length === 12
+    ) {
+      $("#tin-group").removeClass("has-error");
+      $("#tin-group .help-block").addClass("hide");
+    } else {
+      $("#tin-group").addClass("has-error");
+      $("#tin-group .help-block").removeClass("hide");
+    }
+  });
+
+  $("input[name='mobile']").on("keyup", function () {
+    if (
+      $(this).val().trim().length === 11 ||
+      $(this).val().trim().length === 13
+    ) {
+      $("#mobile-group").removeClass("has-error");
+      $("#mobile-group .help-block").addClass("hide");
+    } else {
+      $("#mobile-group").addClass("has-error");
+      $("#mobile-group .help-block").removeClass("hide");
+    }
+  });
+
+  $("input[name='bin']").on("keyup", function () {
+    if ($(this).val().trim().length === 13) {
+      $("#bin-group").removeClass("has-error");
+      $("#bin-group .help-block").addClass("hide");
+    } else {
+      $("#bin-group").addClass("has-error");
+      $("#bin-group .help-block").removeClass("hide");
+    }
+  });
+
+  $("input[name='email']").on("keyup", function () {
+    if ($(this).val().trim() !== "") {
+      $("#email-group").removeClass("has-error");
+      $("#email-group .help-block").addClass("hide");
+    } else {
+      $("#email-group").addClass("has-error");
+      $("#email-group .help-block").removeClass("hide");
+    }
+  });
+
   $("#addCustomerForm").submit(function (event) {
     event.preventDefault();
 
@@ -138,43 +194,37 @@ $(document).ready(function () {
       $(this).addClass("hide");
     });
 
-    if (name === "") {
+    if (
+      name === "" ||
+      tin === "" ||
+      !isValidTIN(tin) ||
+      mobile === "" ||
+      !isValidMobile(mobile) ||
+      bin === "" ||
+      !isValidBIN(bin)
+    ) {
       $("#name-group").addClass("has-error");
       $("#name-group .help-block").removeClass("hide");
-      return;
-    } else if (tin === "") {
-      $("#tin-group").addClass("has-error");
-      $("#tin-group .help-block").removeClass("hide");
-      return;
-    } else if (!isValidTIN(tin)) {
+
       $("#tin-group").addClass("has-error");
       $("#tin-group .help-block")
         .text("Enter a valid 10 or 12-digit TIN")
         .removeClass("hide");
-      return;
-    } else if (email !== "" && !isValidEmail(email)) {
-      $("#email-group").addClass("has-error");
-      $("#email-group .help-block").removeClass("hide");
-      return;
-    } else if (mobile === "") {
-      $("#mobile-group").addClass("has-error");
-      $("#mobile-group .help-block").removeClass("hide");
-      return;
-    } else if (!isValidMobile(mobile)) {
+
       $("#mobile-group").addClass("has-error");
       $("#mobile-group .help-block")
         .text("Please enter a valid mobile number.")
         .removeClass("hide");
-      return;
-    } else if (bin === "") {
-      $("#bin-group").addClass("has-error");
-      $("#bin-group .help-block").removeClass("hide");
-      return;
-    } else if (!isValidBIN(bin)) {
+
       $("#bin-group").addClass("has-error");
       $("#bin-group .help-block")
         .text("Please enter a valid 13-digit BIN.")
         .removeClass("hide");
+
+      return;
+    } else if (email !== "" && !isValidEmail(email)) {
+      $("#email-group").addClass("has-error");
+      $("#email-group .help-block").removeClass("hide");
       return;
     }
 
