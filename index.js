@@ -30,16 +30,10 @@ $(document).ready(function () {
 
       if (value !== "") {
         closingInput.prop("disabled", false);
-        percentage.attr("required", true);
-        percentage
-          .closest("td")
-          .append(
-            `<span class="help-block hide">Percentage field is required.</span>`
-          );
+        percentage.addClass("warning-border");
       } else {
         closingInput.val("").prop("disabled", true);
-        percentage.attr("required", false);
-        percentage.closest("td").find(".help-block").remove();
+        percentage.removeClass("warning-border");
       }
     });
 
@@ -51,6 +45,16 @@ $(document).ready(function () {
       } else {
         $("#addDiscount").hide();
       }
+    });
+
+    row.find(".percentage").each(function () {
+      $(this).on("change", function () {
+        if ($(this).val() > 0) {
+          $(this).removeClass("warning-border");
+        } else {
+          $(this).addClass("warning-border");
+        }
+      });
     });
   }
 
@@ -76,6 +80,10 @@ $(document).ready(function () {
     // Re-bind remove handler
     newRow.find(".remove-discount-row").click(function () {
       $(this).closest("tr").remove();
+
+      if ($("#discountTable tbody tr").length === 1) {
+        $("#addDiscount").show();
+      }
     });
 
     $(this).hide();
