@@ -216,3 +216,20 @@ th {
 .warning-border {
   border: 1px solid tomato !important;
 }
+
+/* ===== Print Page ===== */
+
+.print-body-container {
+  border: 1px solid #e2e2e2;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.signature-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+/* ----- End Print Page -----  */
