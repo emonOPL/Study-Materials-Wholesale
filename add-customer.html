@@ -95,6 +95,7 @@
                         class="form-control"
                         id="tin"
                         name="tin"
+                        maxlength="12"
                       />
                       <span class="help-block hide"> TIN is required. </span>
                     </div>
@@ -141,6 +142,7 @@
                         class="form-control"
                         id="mobile"
                         name="mobile"
+                        maxlength="13"
                       />
                       <span class="help-block hide">
                         Mobile number is required.
@@ -158,6 +160,7 @@
                         class="form-control"
                         id="bin"
                         name="bin"
+                        maxlength="13"
                       />
                       <span class="help-block hide"> BIN is required. </span>
                     </div>
@@ -223,6 +226,7 @@
                         type="number"
                         step="any"
                         class="form-control percentage"
+                        min="0"
                       />
                     </td>
                     <td class="remove-discount-row" style="cursor: pointer">
@@ -239,7 +243,7 @@
                 id="payment_instruction"
                 class="form-control"
               >
-                Payment must be made with the Banking channel only.
+Payment must be made with the Banking channel only.
               </textarea>
 
               <button

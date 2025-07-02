@@ -266,7 +266,7 @@ $(document).ready(function () {
       calculateAmount(newRow);
     });
 
-    newRow.find(".quantity").on("keyup", function () {
+    newRow.find(".quantity").on("change", function () {
       calculateAmount(newRow);
     });
 
@@ -303,7 +303,7 @@ $(document).ready(function () {
     });
 
     newRow.find(".quantity").on("change", function () {
-      if ($(this).val() > 0 || $(this).val() === NaN) {
+      if ($(this).val() > 0) {
         $(this).removeClass("warning-border");
       } else {
         $(this).addClass("warning-border");
@@ -323,7 +323,109 @@ $(document).ready(function () {
 
   $("#addBookForm").submit(function (event) {
     event.preventDefault();
-    alert("Clicked!");
+
+    const customer = $(this).find("select[name='customer']").val().trim();
+    const organization = $(this)
+      .find("select[name='organization']")
+      .val()
+      .trim();
+    const session = $(this).find("select[name='session']").val().trim();
+    const program = $(this).find("select[name='program']").val().trim();
+    const materials = $(this).find("select[name='materials']").val().trim();
+    const challan = $(this).find("input[name='challan-no']").val().trim();
+
+    if (
+      !customer ||
+      !organization ||
+      !session ||
+      !program ||
+      !materials ||
+      !challan
+    ) {
+      $("#customer-group").addClass("has-error");
+      $("#customer-group").find(".help-block").removeClass("hide");
+
+      $("#organization-group").addClass("has-error");
+      $("#organization-group").find(".help-block").removeClass("hide");
+
+      $("#session-group").addClass("has-error");
+      $("#session-group").find(".help-block").removeClass("hide");
+
+      $("#program-group").addClass("has-error");
+      $("#program-group").find(".help-block").removeClass("hide");
+
+      $("#materials-group").addClass("has-error");
+      $("#materials-group").find(".help-block").removeClass("hide");
+
+      $("#challan-no-group").addClass("has-error");
+      $("#challan-no-group").find(".help-block").removeClass("hide");
+
+      return;
+    }
+
+    window.location.href = "print.html";
+
+    alert("Form submitted!");
+  });
+
+  $("#customer").on("change", function () {
+    if (!$(this).val().trim()) {
+      $("#customer-group").addClass("has-error");
+      $("#customer-group").find(".help-block").removeClass("hide");
+    } else {
+      $("#customer-group").removeClass("has-error");
+      $("#customer-group").find(".help-block").addClass("hide");
+    }
+  });
+
+  $("#organization").on("change", function () {
+    if (!$(this).val().trim()) {
+      $("#organization-group").addClass("has-error");
+      $("#organization-group").find(".help-block").removeClass("hide");
+    } else {
+      $("#organization-group").removeClass("has-error");
+      $("#organization-group").find(".help-block").addClass("hide");
+    }
+  });
+
+  $("#session").on("change", function () {
+    if (!$(this).val().trim()) {
+      $("#session-group").addClass("has-error");
+      $("#session-group").find(".help-block").removeClass("hide");
+    } else {
+      $("#session-group").removeClass("has-error");
+      $("#session-group").find(".help-block").addClass("hide");
+    }
+  });
+
+  $("#program").on("change", function () {
+    if (!$(this).val().trim()) {
+      $("#program-group").addClass("has-error");
+      $("#program-group").find(".help-block").removeClass("hide");
+    } else {
+      $("#program-group").removeClass("has-error");
+      $("#program-group").find(".help-block").addClass("hide");
+    }
+  });
+
+  $("#materials").on("change", function () {
+    if (!$(this).val().trim()) {
+      $("#materials-group").addClass("has-error");
+      $("#materials-group").find(".help-block").removeClass("hide");
+    } else {
+      $("#materials-group").removeClass("has-error");
+      $("#materials-group").find(".help-block").addClass("hide");
+    }
+  });
+
+  $("#challan-no").on("keyup", function () {
+    if (!$(this).val().trim()) {
+      $("#challan-no-group").addClass("has-error");
+      $("#challan-no-group").find(".help-block").removeClass("hide");
+    } else {
+      $("#challan-no-group").removeClass("has-error");
+      $("#challan-no-group").find(".help-block").addClass("hide");
+    }
   });
 
   // ----- End Add Book Page -----
