@@ -272,32 +272,50 @@ $(document).ready(function () {
     const selectedOption = $(this).find("option:selected");
     const discount = selectedOption.data("discount") || 0;
     currentDiscountRate = discount;
-    $("#showDiscountRate").text(
-      `${currentDiscountRate === 0 ? "" : `(${currentDiscountRate}%)`}`
-    );
+
+    var tableRows = $("#addBookTable tbody tr");
+    tableRows.each(function () {
+      $(this).find(".regular").val(currentDiscountRate);
+      calculateAmount($(this));
+    });
+
     calculateTotal();
   });
 
   function calculateTotal() {
     var totalAmount = 0;
+    var grandTotalAmount = 0;
+    var specialAmount = 0;
 
     $("#addBookTable tbody tr").each(function () {
       const calculateAmount = parseFloat($(this).find(".amount").val()) || 0;
+      const calculateSpecialAmount =
+        parseFloat($(this).find(".special").val()) || 0;
+      const calculateGrandAmount =
+        parseFloat($(this).find(".net-amount").val()) || 0;
       totalAmount += calculateAmount;
+      grandTotalAmount += calculateGrandAmount;
+      specialAmount += calculateSpecialAmount;
     });
 
     $("#total-amount").val(totalAmount.toFixed(2));
-    $("#discount").val((totalAmount * (currentDiscountRate / 100)).toFixed(2));
-    $("#grand-total").val(
-      (totalAmount * (1 - currentDiscountRate / 100)).toFixed(2)
+    $("#regular-discount").val(
+      (totalAmount * (currentDiscountRate / 100)).toFixed(2)
     );
+    $("#special-discount").val(specialAmount.toFixed(2));
+    $("#grand-total").val(grandTotalAmount.toFixed(2));
   }
 
   function calculateAmount(row) {
     const rate = parseInt(row.find(".rate").val());
     const quantity = parseInt(row.find(".quantity").val());
     const amount = rate * quantity;
+    const regular = parseInt(row.find(".regular").val());
+    const special = parseInt(row.find(".special").val()) || 0;
+    const netAmount = amount - amount * (regular / 100) - special;
+
     row.find(".amount").val(amount);
+    row.find(".net-amount").val(netAmount);
 
     calculateTotal();
   }
@@ -305,6 +323,22 @@ $(document).ready(function () {
   const materialArray = [];
 
   // ===== Add Discount Row =====
+
+  function checkAvailability(selectedRow, selectedName, selectedValue) {
+    var tableRows = $("#addBookTable tbody tr").not(selectedRow);
+    var found = false;
+
+    tableRows.each(function () {
+      const currentValue = $(this).find(`select[name='${selectedName}']`).val();
+      if (currentValue && currentValue == selectedValue) {
+        found = true;
+        return false;
+      }
+    });
+
+    return !found;
+  }
+
   $("#addMaterials").click(function () {
     var lastRow = $("#addBookTable tbody tr:last");
     var newRow = lastRow.clone().removeClass("hide");
@@ -319,6 +353,8 @@ $(document).ready(function () {
     newRow.find(".quantity").val(0);
     newRow.find(".special").val(0);
     newRow.find(".quantity").removeClass("warning-border");
+    newRow.find(".material-td").removeClass("has-error");
+    newRow.find(".help-block").addClass("hide");
 
     $("#addBookTable tbody").append(newRow);
 
@@ -344,39 +380,118 @@ $(document).ready(function () {
         $(this).closest("tr").find(".quantity").addClass("warning-border");
       }
 
-      if (
-        value &&
-        selectedMaterials.val() &&
-        selectedProgram.val() &&
+      const checkMaterial = checkAvailability(
+        newRow,
+        "material",
+        $(this).val()
+      );
+      const checkProgram = checkAvailability(
+        newRow,
+        "program",
+        selectedProgram.val()
+      );
+      const checkSession = checkAvailability(
+        newRow,
+        "session",
         selectedSession.val()
-      ) {
-        var flag = false;
+      );
+      const checkMaterials = checkAvailability(
+        newRow,
+        "materials",
+        selectedMaterials.val()
+      );
 
-        materialArray.forEach((arrayObject) => {
-          if (
-            value === arrayObject.material &&
-            selectedMaterials.val() === arrayObject.materials &&
-            selectedProgram.val() === arrayObject.program &&
-            selectedSession.val() === arrayObject.session
-          ) {
-            flag = true;
-            $(this).closest("td").addClass("has-error");
-            $(this).closest("td").find(".help-block").removeClass("hide");
-          }
-        });
-        if (!flag) {
-          materialArray.push({
-            material: selectedMaterial.val(),
-            materials: selectedMaterials.val(),
-            program: selectedProgram.val(),
-            session: selectedSession.val(),
-          });
-          $(this).closest("td").removeClass("has-error");
-          $(this).closest("td").find(".help-block").addClass("hide");
-        }
+      if (!checkMaterial && !checkProgram && !checkSession && !checkMaterials) {
+        $(this).closest("td").addClass("has-error");
+        $(this).closest("td").find(".help-block").removeClass("hide");
       } else {
         $(this).closest("td").removeClass("has-error");
         $(this).closest("td").find(".help-block").addClass("hide");
+      }
+    });
+
+    selectedMaterials.on("change", function () {
+      const checkMaterial = checkAvailability(
+        newRow,
+        "material",
+        selectedMaterial.val()
+      );
+      const checkProgram = checkAvailability(
+        newRow,
+        "program",
+        selectedProgram.val()
+      );
+      const checkSession = checkAvailability(
+        newRow,
+        "session",
+        selectedSession.val()
+      );
+      const checkMaterials = checkAvailability(
+        newRow,
+        "materials",
+        $(this).val()
+      );
+
+      if (!checkMaterial && !checkProgram && !checkSession && !checkMaterials) {
+        $(this).closest("tr").find(".material-td").addClass("has-error");
+        $(this).closest("tr").find(".help-block").removeClass("hide");
+      } else {
+        $(this).closest("tr").find(".material-td").removeClass("has-error");
+        $(this).closest("tr").find(".help-block").addClass("hide");
+      }
+    });
+
+    selectedSession.on("change", function () {
+      const checkMaterial = checkAvailability(
+        newRow,
+        "material",
+        selectedMaterial.val()
+      );
+      const checkProgram = checkAvailability(
+        newRow,
+        "program",
+        selectedProgram.val()
+      );
+      const checkSession = checkAvailability(newRow, "session", $(this).val());
+      const checkMaterials = checkAvailability(
+        newRow,
+        "materials",
+        selectedMaterials.val()
+      );
+
+      if (!checkMaterial && !checkProgram && !checkSession && !checkMaterials) {
+        $(this).closest("tr").find(".material-td").addClass("has-error");
+        $(this).closest("tr").find(".help-block").removeClass("hide");
+      } else {
+        $(this).closest("tr").find(".material-td").removeClass("has-error");
+        $(this).closest("tr").find(".help-block").addClass("hide");
+      }
+    });
+
+    selectedProgram.on("change", function () {
+      const checkMaterial = checkAvailability(
+        newRow,
+        "material",
+        selectedMaterial.val()
+      );
+      const checkProgram = checkAvailability(newRow, "program", $(this).val());
+      const checkSession = checkAvailability(
+        newRow,
+        "session",
+        selectedSession.val()
+      );
+      const checkMaterials = checkAvailability(
+        newRow,
+        "materials",
+        selectedMaterials.val()
+      );
+
+      if (!checkMaterial && !checkProgram && !checkSession && !checkMaterials) {
+        $(this).closest("tr").find(".material-td").addClass("has-error");
+        $(this).closest("tr").find(".help-block").removeClass("hide");
+      } else {
+        $(this).closest("tr").find(".material-td").removeClass("has-error");
+        $(this).closest("tr").find(".help-block").addClass("hide");
       }
     });
 

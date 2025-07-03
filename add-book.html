@@ -125,33 +125,44 @@
               </div>
 
               <div
+                class="table-responsive"
                 style="
                   border: 1px solid rgb(222, 222, 222);
                   border-radius: 1rem;
+                  overflow-x: auto;
                 "
               >
                 <table
                   id="addBookTable"
                   class="table table-borderless text-center no-border"
+                  style="min-width: 1200px"
                 >
                   <thead>
                     <tr>
-                      <th><b>Program</b></th>
-                      <th><b>Session</b></th>
-                      <th><b>Materials Type</b></th>
-                      <th><b>Materials</b></th>
-                      <th><b>Rate</b></th>
-                      <th><b>Quantity</b></th>
-                      <th><b>Amount</b></th>
-                      <th><b>Regular (%)</b></th>
-                      <th><b>Special (BDT)</b></th>
-                      <th><b>Net Amount</b></th>
+                      <th rowspan="2" class="text-center"><b>Program</b></th>
+                      <th rowspan="2" class="text-center"><b>Session</b></th>
+                      <th rowspan="2" class="text-center">
+                        <b>Materials Type</b>
+                      </th>
+                      <th rowspan="2" class="text-center"><b>Materials</b></th>
+                      <th rowspan="2" class="text-center"><b>Rate</b></th>
+                      <th rowspan="2" class="text-center"><b>Quantity</b></th>
+                      <th rowspan="2" class="text-center"><b>Amount</b></th>
+                      <th id="discount-th" colspan="2" class="text-center">
+                        <b>Discount</b>
+                      </th>
+                      <th rowspan="2" class="text-center"><b>Net Amount</b></th>
                       <th
+                        rowspan="2"
                         style="cursor: pointer; color: #349c42"
                         id="addMaterials"
                       >
                         <i class="fa-regular fa-square-plus"></i>
                       </th>
+                    </tr>
+                    <tr>
+                      <th class="text-center"><b>Regular (%)</b></th>
+                      <th class="text-center"><b>Special (BDT)</b></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -193,7 +204,7 @@
                           </option>
                         </select>
                       </td>
-                      <td class="form-group">
+                      <td class="form-group material-td">
                         <select name="material" class="form-control material">
                           <option value="">Select Materials</option>
                           <option value="book-01" data-price="150">
@@ -361,7 +372,7 @@
                       class="control-label col-sm-4"
                       for="special-discount"
                     >
-                      Regular Discount
+                      Special Discount
                     </label>
                     <div class="col-sm-8">
                       <input

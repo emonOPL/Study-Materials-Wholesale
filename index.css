@@ -217,6 +217,14 @@ th {
   border: 1px solid tomato !important;
 }
 
+#addBookTable thead th {
+  vertical-align: bottom !important;
+}
+
+#discount-th {
+  border-bottom: 1px solid #e2e2e2 !important;
+}
+
 /* ===== Print Page ===== */
 
 .print-body-container {
