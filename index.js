@@ -119,6 +119,15 @@ $(document).ready(function () {
     newRow.find(".remove-discount-row").click(function () {
       $(this).closest("tr").remove();
 
+      var discountRows = $("#discountTable tbody tr");
+      var si = 0;
+
+      discountRows.each(function () {
+        $(this).attr("data-id", si);
+        $(this).find("td:first").text(si);
+        si++;
+      });
+
       if ($("#discountTable tbody tr").length === 1) {
         $("#addDiscount").show();
       }
