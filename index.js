@@ -1,24 +1,6 @@
 let currentDiscountRate = 0;
 
 $(document).ready(function () {
-  // ===== Data Table =====
-
-  $("#customerTable").DataTable({
-    paging: true,
-    lengthChange: true,
-    searching: true,
-    ordering: true,
-    info: true,
-    autoWidth: true,
-    responsive: true,
-    columnDefs: [
-      {
-        targets: -1, // Last column (Action)
-        orderable: false,
-      },
-    ],
-  });
-
   // ===== Function to Initialize Datepickers =====
 
   $("#date-from")
