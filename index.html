@@ -13,7 +13,10 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap.min.css"
+    />
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
@@ -88,7 +91,10 @@
             <!-- ===== Table Container ===== -->
 
             <div class="table-container">
-              <table class="table table-bordered custom-table">
+              <table
+                id="customerTable"
+                class="table table-bordered custom-table"
+              >
                 <thead>
                   <tr>
                     <th>Serial</th>
@@ -126,13 +132,243 @@
                       <span class="edit-icon">
                         <i class="fa-solid fa-pencil"></i>
                       </span>
+                      <span class="delete-icon">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>002</td>
+                    <td>Jane Smith</td>
+                    <td>018xxxxxxxx</td>
+                    <td>234567890</td>
+                    <td>876543210</td>
+                    <td>jane@example.com</td>
+                    <td>456 Market Rd, Chittagong</td>
+                    <td>Inactive</td>
+                    <td>Manager</td>
+                    <td>2025-06-26</td>
+                    <td>Admin</td>
+                    <td>2025-06-21</td>
+                    <td class="action-cell fixed-action">
+                      <span class="edit-icon">
+                        <i class="fa-solid fa-pencil"></i>
+                      </span>
+                      <span class="delete-icon">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>003</td>
+                    <td>Bob Johnson</td>
+                    <td>019xxxxxxxx</td>
+                    <td>345678901</td>
+                    <td>765432109</td>
+                    <td>bob@example.com</td>
+                    <td>789 Center Ave, Sylhet</td>
+                    <td>Active</td>
+                    <td>User</td>
+                    <td>2025-06-27</td>
+                    <td>Admin</td>
+                    <td>2025-06-22</td>
+                    <td class="action-cell fixed-action">
+                      <span class="edit-icon">
+                        <i class="fa-solid fa-pencil"></i>
+                      </span>
+                      <span class="delete-icon">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>004</td>
+                    <td>Alice Brown</td>
+                    <td>015xxxxxxxx</td>
+                    <td>456789012</td>
+                    <td>654321098</td>
+                    <td>alice@example.com</td>
+                    <td>321 Park Lane, Rajshahi</td>
+                    <td>Active</td>
+                    <td>Manager</td>
+                    <td>2025-06-28</td>
+                    <td>User</td>
+                    <td>2025-06-23</td>
+                    <td class="action-cell fixed-action">
+                      <span class="edit-icon">
+                        <i class="fa-solid fa-pencil"></i>
+                      </span>
+                      <span class="delete-icon">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>005</td>
+                    <td>Charlie Davis</td>
+                    <td>016xxxxxxxx</td>
+                    <td>567890123</td>
+                    <td>543210987</td>
+                    <td>charlie@example.com</td>
+                    <td>654 Oak Street, Khulna</td>
+                    <td>Inactive</td>
+                    <td>Admin</td>
+                    <td>2025-06-29</td>
+                    <td>Manager</td>
+                    <td>2025-06-24</td>
+                    <td class="action-cell fixed-action">
+                      <span class="edit-icon">
+                        <i class="fa-solid fa-pencil"></i>
+                      </span>
+                      <span class="delete-icon">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>006</td>
+                    <td>Diana Wilson</td>
+                    <td>013xxxxxxxx</td>
+                    <td>678901234</td>
+                    <td>432109876</td>
+                    <td>diana@example.com</td>
+                    <td>987 Elm Drive, Barisal</td>
+                    <td>Active</td>
+                    <td>User</td>
+                    <td>2025-06-30</td>
+                    <td>Admin</td>
+                    <td>2025-06-25</td>
+                    <td class="action-cell fixed-action">
+                      <span class="edit-icon">
+                        <i class="fa-solid fa-pencil"></i>
+                      </span>
+                      <span class="delete-icon">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>7</td>
+                    <td>007</td>
+                    <td>Edward Miller</td>
+                    <td>014xxxxxxxx</td>
+                    <td>789012345</td>
+                    <td>321098765</td>
+                    <td>edward@example.com</td>
+                    <td>147 Pine Road, Rangpur</td>
+                    <td>Active</td>
+                    <td>Manager</td>
+                    <td>2025-07-01</td>
+                    <td>User</td>
+                    <td>2025-06-26</td>
+                    <td class="action-cell fixed-action">
+                      <span class="edit-icon">
+                        <i class="fa-solid fa-pencil"></i>
+                      </span>
+                      <span class="delete-icon">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>8</td>
+                    <td>008</td>
+                    <td>Fiona Taylor</td>
+                    <td>012xxxxxxxx</td>
+                    <td>890123456</td>
+                    <td>210987654</td>
+                    <td>fiona@example.com</td>
+                    <td>258 Maple Street, Comilla</td>
+                    <td>Inactive</td>
+                    <td>Admin</td>
+                    <td>2025-07-02</td>
+                    <td>Manager</td>
+                    <td>2025-06-27</td>
+                    <td class="action-cell fixed-action">
+                      <span class="edit-icon">
+                        <i class="fa-solid fa-pencil"></i>
+                      </span>
+                      <span class="delete-icon">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>9</td>
+                    <td>009</td>
+                    <td>George Anderson</td>
+                    <td>011xxxxxxxx</td>
+                    <td>901234567</td>
+                    <td>109876543</td>
+                    <td>george@example.com</td>
+                    <td>369 Cedar Avenue, Jessore</td>
+                    <td>Active</td>
+                    <td>User</td>
+                    <td>2025-07-03</td>
+                    <td>Admin</td>
+                    <td>2025-06-28</td>
+                    <td class="action-cell fixed-action">
+                      <span class="edit-icon">
+                        <i class="fa-solid fa-pencil"></i>
+                      </span>
+                      <span class="delete-icon">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>10</td>
+                    <td>010</td>
+                    <td>Hannah Thomas</td>
+                    <td>010xxxxxxxx</td>
+                    <td>012345678</td>
+                    <td>098765432</td>
+                    <td>hannah@example.com</td>
+                    <td>741 Birch Lane, Mymensingh</td>
+                    <td>Active</td>
+                    <td>Manager</td>
+                    <td>2025-07-04</td>
+                    <td>User</td>
+                    <td>2025-06-29</td>
+                    <td class="action-cell fixed-action">
+                      <span class="edit-icon">
+                        <i class="fa-solid fa-pencil"></i>
+                      </span>
+                      <span class="delete-icon">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>11</td>
+                    <td>001</td>
+                    <td>John Doe</td>
+                    <td>017xxxxxxxx</td>
+                    <td>123456789</td>
+                    <td>987654321</td>
+                    <td>john@example.com</td>
+                    <td>123 Main St, Dhaka</td>
+                    <td>Active</td>
+                    <td>Admin</td>
+                    <td>2025-06-25</td>
+                    <td>Admin</td>
+                    <td>2025-06-20</td>
+                    <td class="action-cell fixed-action">
+                      <span class="edit-icon">
+                        <i class="fa-solid fa-pencil"></i>
+                      </span>
                       <span class="delete-icon"
                         ><i class="fa-solid fa-trash-can"></i
                       ></span>
                     </td>
                   </tr>
                   <tr>
-                    <td>2</td>
+                    <td>12</td>
                     <td>002</td>
                     <td>Jane Smith</td>
                     <td>018xxxxxxxx</td>
@@ -159,38 +395,6 @@
             </div>
 
             <!-- ----- Table Container End ----- -->
-
-            <div class="pagination">
-              <p>Showing 1 to 5 of 20 entries</p>
-              <table border="1">
-                <tbody>
-                  <tr>
-                    <td>
-                      <a href="#" class=""
-                        ><i class="fa-solid fa-angles-left"></i
-                      ></a>
-                    </td>
-                    <td>
-                      <a href="#" class="">1</a>
-                    </td>
-                    <td>
-                      <a href="#" class="">2</a>
-                    </td>
-                    <td>
-                      <a href="#" class="">3</a>
-                    </td>
-                    <td>
-                      <a href="#" class="">4</a>
-                    </td>
-                    <td>
-                      <a href="#" class=""
-                        ><i class="fa-solid fa-angles-right"></i
-                      ></a>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
           </div>
         </div>
       </div>
@@ -209,6 +413,9 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap.min.js"></script>
+
     <script src="index.js"></script>
 
     <!-- ----- Scripts End -----  -->
