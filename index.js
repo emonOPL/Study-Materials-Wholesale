@@ -355,6 +355,10 @@ $(document).ready(function () {
     newRow.find(".quantity").removeClass("warning-border");
     newRow.find(".material-td").removeClass("has-error");
     newRow.find(".help-block").addClass("hide");
+    newRow.find(".quantity-td").removeClass("has-error");
+    newRow.find(".program-td").removeClass("has-error");
+    newRow.find(".session-td").removeClass("has-error");
+    newRow.find(".materials-td").removeClass("has-error");
 
     $("#addBookTable tbody").append(newRow);
 
@@ -366,6 +370,12 @@ $(document).ready(function () {
 
     newRow.find(".quantity").on("change", function () {
       calculateAmount(newRow);
+      if (parseInt($(this).val()) > 0) {
+        newRow.find(".quantity-td").removeClass("has-error");
+        $(this).removeClass("warning-border");
+      } else {
+        $(this).addClass("warning-border");
+      }
     });
 
     selectedMaterial.on("change", function () {
@@ -439,6 +449,10 @@ $(document).ready(function () {
         $(this).closest("tr").find(".material-td").removeClass("has-error");
         $(this).closest("tr").find(".help-block").addClass("hide");
       }
+
+      if (selectedMaterials.val()) {
+        newRow.find(".materials-td").removeClass("has-error");
+      }
     });
 
     selectedSession.on("change", function () {
@@ -465,6 +479,10 @@ $(document).ready(function () {
       } else {
         $(this).closest("tr").find(".material-td").removeClass("has-error");
         $(this).closest("tr").find(".help-block").addClass("hide");
+      }
+
+      if (selectedSession.val()) {
+        newRow.find(".session-td").removeClass("has-error");
       }
     });
 
@@ -493,13 +511,9 @@ $(document).ready(function () {
         $(this).closest("tr").find(".material-td").removeClass("has-error");
         $(this).closest("tr").find(".help-block").addClass("hide");
       }
-    });
 
-    newRow.find(".quantity").on("change", function () {
-      if ($(this).val() > 0) {
-        $(this).removeClass("warning-border");
-      } else {
-        $(this).addClass("warning-border");
+      if (selectedProgram.val()) {
+        newRow.find(".program-td").removeClass("has-error");
       }
     });
 
@@ -522,37 +536,87 @@ $(document).ready(function () {
       .find("select[name='organization']")
       .val()
       .trim();
-    const session = $(this).find("select[name='session']").val().trim();
-    const program = $(this).find("select[name='program']").val().trim();
-    const materials = $(this).find("select[name='materials']").val().trim();
+
     const challan = $(this).find("input[name='challan-no']").val().trim();
 
-    if (
-      !customer ||
-      !organization ||
-      !session ||
-      !program ||
-      !materials ||
-      !challan
-    ) {
-      $("#customer-group").addClass("has-error");
-      $("#customer-group").find(".help-block").removeClass("hide");
+    if (!customer || !organization || !challan) {
+      if (!customer) {
+        $("#customer-group").addClass("has-error");
+        $("#customer-group").find(".help-block").removeClass("hide");
+      }
 
-      $("#organization-group").addClass("has-error");
-      $("#organization-group").find(".help-block").removeClass("hide");
+      if (!organization) {
+        $("#organization-group").addClass("has-error");
+        $("#organization-group").find(".help-block").removeClass("hide");
+      }
 
-      $("#session-group").addClass("has-error");
-      $("#session-group").find(".help-block").removeClass("hide");
+      if (!challan) {
+        $("#challan-no-group").addClass("has-error");
+        $("#challan-no-group").find(".help-block").removeClass("hide");
+      }
 
-      $("#program-group").addClass("has-error");
-      $("#program-group").find(".help-block").removeClass("hide");
+      return;
+    }
 
-      $("#materials-group").addClass("has-error");
-      $("#materials-group").find(".help-block").removeClass("hide");
+    var validateTableRows = $("#addBookTable tbody tr").not('[data-id="0"]');
+    var hasError = false;
 
-      $("#challan-no-group").addClass("has-error");
-      $("#challan-no-group").find(".help-block").removeClass("hide");
+    if (validateTableRows.length < 1) {
+      alert("Please add minimum one row.");
+      return;
+    }
 
+    validateTableRows.each(function () {
+      const programValue = $(this).find("select[name='program']").val();
+      const sessionValue = $(this).find("select[name='session']").val();
+      const materialsValue = $(this).find("select[name='materials']").val();
+      const materialValue = $(this).find("select[name='material']").val();
+      const quantityValue = parseInt($(this).find(".quantity").val()) || 0;
+
+      console.log(quantityValue, typeof quantityValue);
+
+      if (!programValue) {
+        $(this).find(".program-td").addClass("has-error");
+        hasError = true;
+      } else {
+        $(this).find(".program-td").removeClass("has-error");
+        hasError = false;
+      }
+
+      if (!sessionValue) {
+        $(this).find(".session-td").addClass("has-error");
+        hasError = true;
+      } else {
+        $(this).find(".session-td").removeClass("has-error");
+        hasError = false;
+      }
+
+      if (!materialsValue) {
+        $(this).find(".materials-td").addClass("has-error");
+        hasError = true;
+      } else {
+        $(this).find(".materials-td").removeClass("has-error");
+        hasError = false;
+      }
+
+      if (!materialValue) {
+        $(this).find(".material-td").addClass("has-error");
+        hasError = true;
+      } else {
+        $(this).find(".material-td").removeClass("has-error");
+        hasError = false;
+      }
+
+      if (quantityValue <= 0) {
+        $(this).find(".quantity-td").addClass("has-error");
+        hasError = true;
+      } else {
+        $(this).find(".quantity-td").removeClass("has-error");
+        hasError = false;
+      }
+    });
+
+    if (hasError) {
       return;
     }
 
