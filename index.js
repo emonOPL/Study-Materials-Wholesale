@@ -167,16 +167,20 @@ $(document).ready(function () {
   });
 
   $("input[name='mobile']").on("keyup", function () {
-    if (
-      $(this).val().trim().length === 11 ||
-      $(this).val().trim().length === 13
-    ) {
+    const input = $(this).val().trim();
+
+    // Allow formats like: 01XXXXXXXXX, 8801XXXXXXXXX, +8801XXXXXXXXX
+    const isValid = /^(?:\+88|88)?01[3-9]\d{8}$/.test(input);
+
+    if (isValid) {
       $("#mobile-group").removeClass("has-error");
       $("#mobile-group .help-block").addClass("hide");
     } else {
       $("#mobile-group").addClass("has-error");
       $("#mobile-group .help-block").removeClass("hide");
     }
+
+    $(this).val(input.replace(/[^\d+]/g, ""));
   });
 
   $("input[name='bin']").on("keyup", function () {
@@ -366,8 +370,6 @@ $(document).ready(function () {
 
     calculateTotal();
   }
-
-  const materialArray = [];
 
   // ===== Add Discount Row =====
 
