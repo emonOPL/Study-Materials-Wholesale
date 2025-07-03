@@ -2,7 +2,33 @@ let currentDiscountRate = 0;
 
 $(document).ready(function () {
   // ===== Function to Initialize Datepickers =====
-  $("#date-from, #date-to, #sales-date").datepicker({
+
+  $("#date-from")
+    .datepicker({
+      todayBtn: "linked",
+      clearBtn: true,
+      autoclose: true,
+      todayHighlight: true,
+      toggleActive: true,
+      format: "yyyy-mm-dd",
+    })
+    .on("changeDate", function (e) {
+      // When effective date changes, update closing date's minimum date
+      var selectedDate = e.date;
+      var nextDay = new Date(selectedDate);
+      nextDay.setDate(nextDay.getDate() + 1); // Add 1 day to make it greater
+
+      // Update closing date picker's start date
+      $("#date-to").datepicker("setStartDate", nextDay);
+
+      // Clear closing date if it's now invalid
+      var closingDate = $("#date-to").datepicker("getDate");
+      if (closingDate && closingDate <= selectedDate) {
+        $("#date-to").datepicker("clearDates");
+      }
+    });
+
+  $("#sales-date").datepicker({
     todayBtn: "linked",
     clearBtn: true,
     autoclose: true,
@@ -23,7 +49,7 @@ $(document).ready(function () {
 
     row.find(".closing-date").prop("disabled", true);
 
-    row.find(".effective-date").on("changeDate", function () {
+    row.find(".effective-date").on("changeDate", function (e) {
       const value = $(this).val().trim();
       const closingInput = $(this).closest("tr").find(".closing-date");
       const percentage = $(this).closest("tr").find(".percentage");
@@ -34,6 +60,17 @@ $(document).ready(function () {
       } else {
         closingInput.val("").prop("disabled", true);
         percentage.removeClass("warning-border");
+      }
+
+      var selectedDate = e.date;
+      var nextDay = new Date(selectedDate);
+      nextDay.setDate(nextDay.getDate() + 1);
+
+      closingInput.datepicker("setStartDate", nextDay);
+
+      var closingDate = closingInput.datepicker("getDate");
+      if (closingDate && closingDate <= selectedDate) {
+        closingInput.datepicker("clearDates");
       }
     });
 
@@ -72,6 +109,7 @@ $(document).ready(function () {
     newRow.attr("data-id", newId);
     newRow.find("td:first").text(newId);
     newRow.find("input").val("");
+    newRow.find(".percentage").removeClass("warning-border");
 
     $("#discountTable tbody").append(newRow);
 
